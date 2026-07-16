@@ -12,7 +12,7 @@ let listaGlobal = [];
 // buscar e carregar integrantes
 async function carregarIntegrantes() {
     try {
-        const resposta = await fetch('http://localhost:3000/integrantes');
+        const resposta = await fetch('/integrantes');
         listaGlobal = await resposta.json();
         
         tbody.innerHTML = ''; 
@@ -49,7 +49,7 @@ form.addEventListener('submit', async (evento) => {
     const linkedin = document.getElementById('linkedin').value;
 
     try {
-        const resposta = await fetch('http://localhost:3000/integrantes', {
+        const resposta = await fetch('/integrantes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nome, email, github, linkedin })
@@ -79,7 +79,7 @@ async function excluirIntegrante(id) {
     
     if (confirmacao) {
         try {
-            const resposta = await fetch(`http://localhost:3000/integrantes/${id}`, {
+            const resposta = await fetch(`/integrantes/${id}`, {
                 method: 'DELETE'
             });
 
@@ -118,7 +118,7 @@ formEdicao.addEventListener('submit', async (evento) => {
     const linkedin = document.getElementById('edit-linkedin').value;
 
     try {
-        const resposta = await fetch(`http://localhost:3000/integrantes/${id}`, {
+        const resposta = await fetch(`/integrantes/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nome, email, github, linkedin })
