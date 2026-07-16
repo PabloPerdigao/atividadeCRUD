@@ -1,6 +1,6 @@
 const form = document.getElementById('form-integrante');
 const formEdicao = document.getElementById('form-edicao');
-const mensagemDiv = document.getElementById('mensagem');
+const mensagemFeedback = document.getElementById('mensagem');
 const tbody = document.querySelector('#tabela-integrantes tbody');
 
 const modalEdicao = new bootstrap.Modal(document.getElementById('modalEdicao'));
@@ -24,7 +24,7 @@ async function carregarIntegrantes() {
                 <td><strong>${integrante.id}</strong></td>
                 <td>${integrante.nome}</td>
                 <td>${integrante.email}</td>
-                <td>${integrante.github}</td>
+                <td><a href="${integrante.github}" target="_blank" class="text-decoration-none">Ver Perfil</a></td>
                 <td><a href="${integrante.linkedin}" target="_blank" class="text-decoration-none">Ver Perfil</a></td>
                 <td class="text-center">
                     <button class="btn btn-warning btn-sm me-1" onclick="editarIntegrante(${integrante.id})">Editar</button>
@@ -58,17 +58,17 @@ form.addEventListener('submit', async (evento) => {
         const dados = await resposta.json();
 
         if (resposta.ok) {
-            mensagemDiv.className = 'text-success mt-3 fw-bold';
-            mensagemDiv.innerText = dados.mensagem;
+            mensagemFeedback.className = 'text-success mt-3 fw-bold';
+            mensagemFeedback.innerText = dados.mensagem;
             form.reset();
             carregarIntegrantes(); // Atualiza a tabela
         } else {
-            mensagemDiv.className = 'text-danger mt-3 fw-bold';
-            mensagemDiv.innerText = 'Erro: ' + dados.erro;
+            mensagemFeedback.className = 'text-danger mt-3 fw-bold';
+            mensagemFeedback.innerText = 'Erro: ' + dados.erro;
         }
     } catch (erro) {
-        mensagemDiv.className = 'text-danger mt-3 fw-bold';
-        mensagemDiv.innerText = 'Erro ao conectar ao servidor.';
+        mensagemFeedback.className = 'text-danger mt-3 fw-bold';
+        mensagemFeedback.innerText = 'Erro ao conectar ao servidor.';
     }
 });
 
