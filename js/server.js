@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../'))); // config para entregar arquivos estáticos (HTML, CSS, JS) da pasta raiz do projeto
+app.use(express.static(path.join(__dirname, '../'))); // config para node enviar arquivos estáticos 
 
 // ROTAS
 
